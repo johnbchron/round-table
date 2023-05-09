@@ -29,9 +29,9 @@ const AddressTable: FC<{
     <table className='table-auto w-full text-left'>
       <thead className='bg-gray-100'>
         <tr>
-          <th className='p-4'>{addressName}</th>
-          <th className='p-4'>Payment Derivation Path</th>
-          <th className='p-4'>Staking Derivation Path</th>
+          <th className='p-2 sm:p-4 text-sm sm:text-md'>{addressName}</th>
+          <th className='p-2 sm:p-4 text-sm sm:text-md'>Payment Derivation Path</th>
+          <th className='p-2 sm:p-4 text-sm sm:text-md'>Staking Derivation Path</th>
         </tr>
       </thead>
       <tbody className='divide-y text-sm'>
@@ -343,10 +343,10 @@ const ShowPersonalWallet: NextPage = () => {
       </Hero>
       {tab === 'personal' && <Personal wallet={personalWallet} className='space-y-2' />}
       {tab === 'multisig' && <>
-        <div className='p-4 text-yellow-700 bg-yellow-100 rounded shadow flex items-center space-x-1'>
-          <ExclamationTriangleIcon className='w-4' />
-          <div>These addresses are only for multisig wallet making.</div>
-          <strong className='font-semibold'>DO NOT USE THEM TO RECEIVE FUNDS.</strong>
+        <div className='p-4 text-yellow-700 bg-yellow-100 rounded shadow flex items-center gap-2'>
+          <ExclamationTriangleIcon className='w-4 flex-none' />
+          <div className='text-xs sm:text-md'>These addresses are only for multisig wallet making.</div>
+          <div className='text-xs sm:text-md font-semibold'>DO NOT USE THEM TO RECEIVE FUNDS.</div>
         </div>
         <Multisig wallet={personalWallet} />
       </>}

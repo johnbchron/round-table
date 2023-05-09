@@ -31,7 +31,7 @@ const DerivationPath: FC<{
   if (!derivationPath) return null
 
   return (
-    <>{formatDerivationPath(derivationPath)}</>
+    <span className='break-all sm:break-normal'>{formatDerivationPath(derivationPath)}</span>
   )
 }
 
