@@ -276,7 +276,7 @@ const WalletList: FC = () => {
   }, [data])
 
   return (
-    <aside className={['flex flex-col lg:w-60 bg-sky-800 items-center text-white relative', mobileVisible ? 'w-60' : 'w-0'].join(' ')}>
+    <aside className={['flex flex-col lg:min-w-[15rem] bg-sky-800 items-center text-white relative', mobileVisible ? ' min-w-[15rem]' : ''].join(' ')}>
       <div className='absolute lg:hidden z-10 top-4 -right-6 w-6 h-16 bg-sky-800 flex flex-col justify-center items-center rounded-r-lg'>
         {/* inverted left corners */}
         <div className='absolute -top-2 left-0 w-2 h-2 bg-sky-800 transform' />
