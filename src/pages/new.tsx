@@ -132,7 +132,7 @@ const RecoverHDWallet: FC<{
     <Panel>
       <div className='p-4 space-y-2'>
         <h2 className='text-lg font-semibold'>Recovery Phrase</h2>
-        <ul className='grid grid-cols-3 xl:grid-cols-4 gap-2'>
+        <ul className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2'>
           {words.map((word, index) => <WordInput key={index} word={word} setWord={setWord} index={index} wordset={wordset} />)}
         </ul>
         <datalist id='bip39-wordlist'>
