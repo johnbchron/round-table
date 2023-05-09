@@ -277,7 +277,7 @@ const WalletList: FC = () => {
 
   return (
     <aside className={['flex flex-col lg:w-60 bg-sky-800 items-center text-white relative', mobileVisible ? 'w-60' : 'w-0'].join(' ')}>
-      <div className='absolute lg:hidden z-50 top-4 -right-6 w-6 h-16 bg-sky-800 flex flex-col justify-center items-center rounded-r-lg'>
+      <div className='absolute lg:hidden z-10 top-4 -right-6 w-6 h-16 bg-sky-800 flex flex-col justify-center items-center rounded-r-lg'>
         {/* inverted left corners */}
         <div className='absolute -top-2 left-0 w-2 h-2 bg-sky-800 transform' />
         <div className='absolute -bottom-2 left-0 w-2 h-2 bg-sky-800 transform' />
@@ -360,8 +360,8 @@ const Modal: FC<{
 }> = ({ className, children, onBackgroundClick }) => {
   return (
     <Portal id='modal-root'>
-      <div onClick={onBackgroundClick} className='absolute bg-black bg-opacity-50 inset-0 flex justify-center items-center'>
-        <div onClick={(e) => e.stopPropagation()} className={className}>
+      <div onClick={onBackgroundClick} className='absolute z-20 bg-black bg-opacity-50 inset-0 flex justify-center items-center'>
+        <div onClick={(e) => e.stopPropagation()} className={['m-2 md:m-0', className].join(' ')}>
           {children}
         </div>
       </div>
