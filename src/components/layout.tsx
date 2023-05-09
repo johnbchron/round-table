@@ -2,7 +2,7 @@ import { useMemo, useContext, useEffect, useState, useCallback } from 'react'
 import type { ChangeEventHandler, MouseEventHandler, KeyboardEvent, KeyboardEventHandler, FC, ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 import Link from 'next/link'
-import { CogIcon, FolderOpenIcon, HomeIcon, PencilSquareIcon, PlusIcon, UserGroupIcon, WalletIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { CogIcon, FolderOpenIcon, HomeIcon, PencilSquareIcon, PlusIcon, UserGroupIcon, WalletIcon, XMarkIcon, ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from '@heroicons/react/24/solid'
 import { ConfigContext, isMainnet } from '../cardano/config'
 import { NotificationCenter, NotificationContext } from './notification'
 import { useLiveQuery } from 'dexie-react-hooks'
@@ -242,6 +242,7 @@ const MultisigWalletListing: FC<{
 
 const WalletList: FC = () => {
   const [config, _] = useContext(ConfigContext)
+  const [mobileVisible, setMobileVisible] = useState(false);
   const cardano = useCardanoMultiplatformLib()
   const multisigWallets = useLiveQuery(async () => db.multisigWallets.toArray())
   const personalWallets = useLiveQuery(async () => db.personalWallets.toArray())
@@ -275,8 +276,21 @@ const WalletList: FC = () => {
   }, [data])
 
   return (
-    <aside className='flex flex-col w-60 bg-sky-800 items-center text-white overflow-y-auto'>
-      <nav className='w-full font-semibold'>
+    <aside className={['flex flex-col lg:w-60 bg-sky-800 items-center text-white relative', mobileVisible ? 'w-60' : 'w-0'].join(' ')}>
+      <div className='absolute lg:hidden z-50 top-4 -right-6 w-6 h-16 bg-sky-800 flex flex-col justify-center items-center rounded-r-lg'>
+        {/* inverted left corners */}
+        <div className='absolute -top-2 left-0 w-2 h-2 bg-sky-800 transform' />
+        <div className='absolute -bottom-2 left-0 w-2 h-2 bg-sky-800 transform' />
+        <div className='absolute -top-2 left-0 w-2 h-2 bg-sky-100 transform rounded-bl-full' />
+        <div className='absolute -bottom-2 left-0 w-2 h-2 bg-sky-100 transform rounded-tl-full' />
+        {/* "expand" symbol */}
+        { mobileVisible ?
+          <ChevronDoubleLeftIcon className='w-6 flex-1' onClick={() => setMobileVisible(!mobileVisible)} />
+        :
+          <ChevronDoubleRightIcon className='w-6 flex-1' onClick={() => setMobileVisible(!mobileVisible)} />
+        }
+      </div>
+      <nav className={['w-full font-semibold lg:block', !mobileVisible && 'hidden'].join(' ')}>
         <NavLink
           href='/new'
           onPageClassName='bg-sky-700'
@@ -326,7 +340,7 @@ const Layout: FC<{
       <WalletList />
       <div className='w-full bg-sky-100 overflow-y-auto'>
         {!isMainnet(config) && <div className='p-1 bg-red-900 text-white text-center'>You are using {config.network} network</div>}
-        <div className='p-2 h-screen space-y-2'>
+        <div className='p-2 pl-8 lg:pl-2 h-screen space-y-2'>
           <ChainProgress />
           {children}
         </div>
