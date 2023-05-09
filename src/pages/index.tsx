@@ -8,7 +8,7 @@ const flintLogo = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkwIiBoZWlnaHQ9IjE
 
 const WalletTable: FC = () => {
   return (
-    <div className='border rounded w-80 overflow-hidden shadow'>
+    <div className='border rounded w-60 sm:w-80 overflow-hidden shadow'>
       <table className='table-fixed w-full'>
         <caption className='bg-gray-100 p-1 font-semibold'>Multisig Support</caption>
         <thead className='bg-gray-100 border-b'>
