@@ -299,7 +299,7 @@ const WalletList: FC = () => {
           <span>New Wallet</span>
         </NavLink>
       </nav>
-      <nav className='block w-full'>
+      <nav className={['w-full font-semibold lg:block', !mobileVisible && 'hidden'].join(' ')}>
         {personalWallets?.map((wallet) => <PersonalWalletListing key={wallet.id} wallet={wallet} balances={balances} />)}
         {multisigWallets?.map((wallet) => <MultisigWalletListing key={wallet.id} wallet={wallet} balance={balances?.get(wallet.id)} />)}
       </nav>
